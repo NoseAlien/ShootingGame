@@ -5,13 +5,21 @@ using UnityEngine;
 public class Shot : MonoBehaviour
 {
     public GameObject Bullet;
-    bool shotTrig = false;
+    int shotInterval = 0;
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Space) && !shotTrig)
+        if (shotInterval <= 0)
         {
-            Instantiate(Bullet, transform.position, Quaternion.identity);
+            if (Input.GetKey(KeyCode.Space))
+            {
+                GameObject bullet_ = Instantiate(Bullet, transform.position, Quaternion.identity);
+                bullet_.GetComponent<Bullet>().player = transform.parent.gameObject;
+                shotInterval = 4;
+            }
         }
-        shotTrig = Input.GetKey(KeyCode.Space);
+        else
+        {
+            shotInterval--;
+        }
     }
 }

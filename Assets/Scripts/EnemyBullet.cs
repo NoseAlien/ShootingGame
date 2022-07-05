@@ -25,7 +25,7 @@ public class EnemyBullet : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         time -= Time.deltaTime;
 
-        if(time <= 0)
+        if(time <= 0 || enemy == null)
         {
             Destroy(gameObject);
         }
@@ -42,6 +42,7 @@ public class EnemyBullet : MonoBehaviour
     {
         if (other.tag == "Player" || other.tag == "PlayerBody")
         {
+            other.GetComponent<PlayerMove>().Damage();
             Destroy(gameObject);
         }
     }

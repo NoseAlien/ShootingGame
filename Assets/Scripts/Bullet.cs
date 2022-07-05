@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public GameObject player;
     void FixedUpdate()
     {
         Vector3 pos = transform.position;
@@ -22,6 +23,7 @@ public class Bullet : MonoBehaviour
         if(other.tag == "Enemy")
         {
             other.GetComponent<Enemy>().Damage();
+            player.GetComponent<PlayerMove>().TakeScore();
             Destroy(gameObject);
         }
     }

@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    int enemyHp;
+    public int enemyHp;
     // Start is called before the first frame update
     void Start()
     {
-        enemyHp = 3;
+        if (enemyHp < 3)
+        {
+            enemyHp = 3;
+        }
     }
 
     // Update is called once per frame
